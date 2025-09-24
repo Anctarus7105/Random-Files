@@ -1,0 +1,28 @@
+return {
+    Speed = 320,
+    DelayTime = 6,
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 35,
+    BreakLights = false,
+    BackwardsMovement = false,
+    FlickerLights = {
+        false,
+        0
+    },
+    Cycles = {
+        Min = 5,
+        Max = 5,
+        WaitTime = 6
+    },
+    CamShake = {
+        true,
+        {5, 15, 0.1, 1},
+        100
+    },
+    Jumpscare = {
+        false,
+        {}
+    },
+    CustomDialog = {},
+}
