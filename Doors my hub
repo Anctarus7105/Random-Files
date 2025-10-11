@@ -1,0 +1,120 @@
+-- Not steal or gay?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Doors Hub Remake v5", "GrapeTheme")
+local Tab = Window:NewTab("Modes")
+local Section = Tab:NewSection("Modes")
+Section:NewButton("Plamen hardcore remake", "Have Fun!", function()
+loadstring(game:HttpGet("https://github.com/djsdtopic-eng/DOORS-PLAMEN-HARDCORE-RECREATED-BY-TUNDER-8401-ANCTARUS-7105/blob/main/The%20revival%20of%20plamen%20hardcore%20(ONLY%20FOR%20THE%20HOTEL%20-%20)%20this%20is%20beta"))()
+    print("Clicked")
+end)
+Section:NewButton("Fear mode", "Have Fun!", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/reboundplayz/doors-fear-mode/refs/heads/main/fear%20mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Crazy Mode(remake by me)", "Have Fun!", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Recreated-modes/refs/heads/main/Crazy%20Mode%20Recreate"))()
+    print("Clicked")
+end)
+Section:NewButton("Endless Mode Doors", "Have Fun!", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DripCapybara/Doors-Mode-Remakes/refs/heads/main/EndlessMode.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Mayhem Mode", "Have Fun!", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Kotyara19k-Doorsspawner/Random-files/main/MayhemMode"))()
+    print("Clicked")
+end)
+Section:NewButton("seek crux", "Light On!", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Kotyara19k-Doorsspawner/Random-files/refs/heads/main/SeekCrucifix"))()
+    print("Clicked")
+end)
+Section:NewButton("New year crux", "Have Fun!", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Kotyara19k-Doorsspawner/Random-files/refs/heads/main/New%20Year's%20Crucifix%20Script"))()
+    print("Clicked")
+end)
+Section:NewButton("Oof's custom room spawn", "Have Fun!", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Custom-Rooms/refs/heads/main/PABMAXICHAC's%20custom%20room"))()
+    print("Clicked")
+end)
+Section:NewButton("demon screech", "Have Fun!", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Entities-Spawns/refs/heads/main/Demon%20Screech%20Spawn"))()
+    print("Clicked")
+end)
+Section:NewButton("Floor 2 Light fixtures", "Have Fun!", function()
+loadstring(game:HttpGet("https://pastefy.app/ZbMQYJGE/raw"))()
+    print("Clicked")
+end)
+Section:NewButton("Floor 2 Light Fixtures (New)", "Have Fun!", function()
+loadstring(game:HttpGet("https://pastefy.app/L66Oe5Fj/raw"))()
+    print("Clicked")
+end)
+Section:NewButton(""Dezeer spawn, "Have Fun!", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Anctarus7105/Entities-Spawns/refs/heads/main/Deezer%20Spawn"))()
+    print("Clicked")
+end)
+Section:NewButton("Nothing ", "Have Fun!", function()
+loadstring(game:HttpGet(""))()
+    print("Clicked")
+end)
