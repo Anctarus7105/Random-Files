@@ -1,0 +1,6 @@
+--Doors Fog Script
+game.Lighting.FogEnd = 50
+game.Lighting.FogStart = 10
+game.Lighting.OutdoorAmbient = Color3.fromRGB(54, 58, 76)
+
+--Cool fog for cool mode :).
