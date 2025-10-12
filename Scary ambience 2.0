@@ -1,0 +1,14 @@
+--Cave ambience 2
+local sound = Instance.new("Sound")
+
+
+sound.SoundId = "rbxassetid://9113731969
+
+sound.Volume = 2.5
+
+sound.Looped = true
+
+sound:Play()
+
+sound.Parent = workspace
+
