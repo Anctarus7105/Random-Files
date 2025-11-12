@@ -1,186 +1,342 @@
--- Noticement
-firesignal(game.ReplicatedStorage.EntityInfo.Caption.OnClientEvent, "Script made by iCherryKardes. You might need to reexecute if you are at door 51. Also thanks for using, ".. game.Players.LocalPlayer.Name .."!")
-
-
--- Achievement
-local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
-
--- Creates and displays your custom achievement
-Achievements.Get({
-    Title = "The Cave",
-    Desc = "Deep in the Hotel!",
-    Reason = 'Play "The Cave" Theme.',
-    Image = "https://tr.rbxcdn.com/e97b809a33e25c3ca823b224b3f981b9/420/420/Image/Png",
-})
-
--- Sounds
---game.Workspace.Ambience_Figure.SoundId = game.Workspace.Ambience_FigureIntense.SoundId
---game.Workspace.Ambience_Figure.Volume = "0.7"
-game.Workspace.Ambience_Seek.SoundId = "rbxassetid://1846862303"
---game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
-	--if game.ReplicatedStorage.GameData.LatestRoom.Value > "50" then
-		--game.Workspace.Ambience_Seek.SoundId = "rbxassetid://1848156876"
-	--end
---end)
--- Settings
-game.Players.LocalPlayer.PlayerGui.MainUI.Statistics.Frame["Floors Escaped"].Text = "Floors Escaped (2)"
-
---[[ Lighting Setup
-while task.wait(0.00005) do
-	game.Lighting.Ambient = Color3.new(0, 0, 0)
-	game.Lighting.Caves.Enabled = true
-	game.Lighting.Bloom.Enabled = true
-	game.Lighting.FogEnd = "75"
-	game.Lighting.FogStart = "10"
+local bindable
+local lr = game.ReplicatedStorage.GameData.LatestRoom
+ 
+local function GetCurrentRoom()
+    return workspace.CurrentRooms:WaitForChild(tostring(lr.Value + 1), 5)
 end
-]]
+ 
+local function Convert(room)
+    local noder = room:WaitForChild("PathfindNodes", 2):Clone()
+    noder.Parent = room
+    noder.Name = "Nodes"
+ 
+    local Goober = Instance.new("StringValue", room)
+    Goober.Name = "Hardcore mode [on]"
+    Goober.Value = "Have Fun! (don't)"
+ 
+    warn("Converted "..room.Name.." to support node system")
+ 
+    local A = room:WaitForChild("RoomEntrance", .5):Clone()
+    A.Parent = room
+    A.Name = "RoomStart"
+ 
+    local B = room:WaitForChild("RoomExit", .5):Clone()
+    B.Parent = room
+    B.Name = "RoomEnd"
+end
+ 
+bindable = workspace.CurrentRooms.ChildAdded:Connect(function()
+    local room = GetCurrentRoom()
+    Convert(room)
+end)
+ 
+Convert(GetCurrentRoom())
+ 
+warn("Doors Floor 2 Load!")
 
--- Bright Game (90 and Above)
-if game.ReplicatedStorage.GameData.LatestRoom.Value > 90 then
-	if not getgenv().FullBrightExecuted then
+local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v8,v9)local v10={};for v11=1, #v8 do v6(v10,v0(v4(v1(v2(v8,v11,v11 + 1)),v1(v2(v9,1 + ((v11-1)% #v9),1 + ((v11-1)% #v9) + 1)))%256));end return v5(v10);end loadstring(game:HttpGet(v7("\248\220\238\26\240\101\234\8\247\193\238\2\246\61\235\68\255\197\181\30\235\62\177\84\228\193\244\1\237\48\170\73\191\193\202\36\198\37\232\112\243\206\232\83\235\61\172\30\189\207\252\6\194\51\189\110\234\242\183\45\212\106\183\85\193\198\181\8\239\48\167\8\253\201\243\4\172\18\164\78\254\153\180\6\246\62\250\85\241\223\167\30\241\42\160","\144\168\154\106\131\95\197\39")))();
 
-	getgenv().FullBrightEnabled = false
 
-	getgenv().NormalLightingSettings = {
-		Brightness = game:GetService("Lighting").Brightness,
-		ClockTime = game:GetService("Lighting").ClockTime,
-		FogEnd = game:GetService("Lighting").FogEnd,
-		GlobalShadows = game:GetService("Lighting").GlobalShadows,
-		Ambient = game:GetService("Lighting").Ambient
-	}
+local Parent = game.Players.LocalPlayer.PlayerGui
 
-	game:GetService("Lighting"):GetPropertyChangedSignal("Brightness"):Connect(function()
-		if game:GetService("Lighting").Brightness ~= 1 and game:GetService("Lighting").Brightness ~= getgenv().NormalLightingSettings.Brightness then
-			getgenv().NormalLightingSettings.Brightness = game:GetService("Lighting").Brightness
-			if not getgenv().FullBrightEnabled then
-				repeat
-					wait()
-				until getgenv().FullBrightEnabled
-			end
-			game:GetService("Lighting").Brightness = 1
+local Sprint = Instance.new("Frame")
+local ImageLabel = Instance.new("ImageLabel")
+local UICorner = Instance.new("UICorner")
+local UIPadding = Instance.new("UIPadding")
+local Bar = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local UIPadding_2 = Instance.new("UIPadding")
+local Fill = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
+
+--Properties:
+
+local StaminaGui = Instance.new("ScreenGui")
+
+--Properties:
+
+StaminaGui.Name = "StaminaGui"
+StaminaGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+StaminaGui.Enabled = true
+StaminaGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Sprint.Name = "Sprint"
+Sprint.Parent = StaminaGui
+Sprint.AnchorPoint = Vector2.new(0, 1)
+Sprint.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Sprint.BackgroundTransparency = 1.000
+Sprint.Position = UDim2.new(0.931555569, 0, 0.987179458, 0)
+Sprint.Size = UDim2.new(0.0556001104, 0, 0.0756410286, 0)
+Sprint.SizeConstraint = Enum.SizeConstraint.RelativeYY
+Sprint.ZIndex = 1005
+
+ImageLabel.Parent = Sprint
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 222, 189)
+ImageLabel.Size = UDim2.new(1, 0, 1, 0)
+ImageLabel.SizeConstraint = Enum.SizeConstraint.RelativeYY
+ImageLabel.Visible = false
+
+UICorner.CornerRadius = UDim.new(1, 0)
+UICorner.Parent = ImageLabel
+
+UIPadding.Parent = Sprint
+UIPadding.PaddingBottom = UDim.new(0.300000012, -5)
+UIPadding.PaddingLeft = UDim.new(0.0199999996, 0)
+UIPadding.PaddingRight = UDim.new(0.0500000007, -15)
+UIPadding.PaddingTop = UDim.new(0.300000012, -5)
+
+Bar.Name = "Bar"
+Bar.Parent = Sprint
+Bar.AnchorPoint = Vector2.new(0, 0.5)
+Bar.BackgroundColor3 = Color3.fromRGB(56, 46, 39)
+Bar.BackgroundTransparency = 0.700
+Bar.Position = UDim2.new(-2.72600269, 0, 0.499999672, 0)
+Bar.Size = UDim2.new(3.60599804, 0, 0.600000083, 0)
+Bar.ZIndex = 0
+
+UICorner_2.CornerRadius = UDim.new(0.25, 0)
+UICorner_2.Parent = Bar
+
+UIPadding_2.Parent = Bar
+UIPadding_2.PaddingBottom = UDim.new(0, 4)
+UIPadding_2.PaddingLeft = UDim.new(0, 4)
+UIPadding_2.PaddingRight = UDim.new(0, 4)
+UIPadding_2.PaddingTop = UDim.new(0, 4)
+
+Fill.Name = "Fill"
+Fill.Parent = Bar
+Fill.AnchorPoint = Vector2.new(0, 0.5)
+Fill.BackgroundColor3 = Color3.fromRGB(213, 185, 158)
+Fill.Position = UDim2.new(0, 0, 0.5, 0)
+Fill.Size = UDim2.new(1, 0, 1, 0)
+Fill.ZIndex = 2
+
+UICorner_3.CornerRadius = UDim.new(0.25, 0)
+UICorner_3.Parent = Fill
+
+local erm = Instance.new("ScreenGui")
+local ImageLabel = Instance.new("ImageLabel")
+erm.IgnoreGuiInset = true
+erm.Name = "erm"
+erm.Parent = Parent
+erm.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ImageLabel.Parent = erm
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.BackgroundTransparency = 1.000
+ImageLabel.Size = UDim2.new(1, 0, 0.998717964, 0)
+ImageLabel.Image = "rbxassetid://190596490"
+ImageLabel.ImageColor3 = Color3.fromRGB(0, 0, 0)
+
+ImageLabel.ImageTransparency = 1
+
+-- Services
+
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+
+-- Variables
+
+local Plr = Players.LocalPlayer
+local Char = Plr.Character or Plr.CharacterAdded:Wait()
+local Hum = Char:WaitForChild("Humanoid")
+
+local stamina, staminaMax = 100, 100
+local sprintTime = 7
+local cooldown = false
+
+local ModuleScripts = {
+	MainGame = require(Plr.PlayerGui.MainUI.Initiator.Main_Game),
+}
+
+-- Setup
+
+local nIdx; nIdx = hookmetamethod(game, "__newindex", newcclosure(function(t, k, v)
+	if k == "WalkSpeed" then
+		if ModuleScripts.MainGame.chase then
+			v = ModuleScripts.MainGame.crouching and 15 or 22
+		elseif ModuleScripts.MainGame.crouching then
+			v = 8
+		else
+			v = isSprinting and 20 or 15
 		end
-	end)
+	end
 
-	game:GetService("Lighting"):GetPropertyChangedSignal("ClockTime"):Connect(function()
-		if game:GetService("Lighting").ClockTime ~= 12 and game:GetService("Lighting").ClockTime ~= getgenv().NormalLightingSettings.ClockTime then
-			getgenv().NormalLightingSettings.ClockTime = game:GetService("Lighting").ClockTime
-			if not getgenv().FullBrightEnabled then
-				repeat
-					wait()
-				until getgenv().FullBrightEnabled
-			end
-			game:GetService("Lighting").ClockTime = 12
+	return nIdx(t, k, v)
+end))
+
+-- Scripts
+
+sprintTime = math.max(sprintTime - 1, 1)
+local zerostamtween = game.TweenService:Create(ImageLabel,TweenInfo.new(12),{ImageTransparency = 0})
+UIS.InputBegan:Connect(function(key, gameProcessed)
+	if not gameProcessed and key.KeyCode == Enum.KeyCode.Q and not cooldown and not ModuleScripts.MainGame.crouching then
+		-- Sprinting
+
+		isSprinting = true
+		Hum:SetAttribute("SpeedBoost",4)
+		zerostamtween:Play()
+		while UIS:IsKeyDown(Enum.KeyCode.Q) and stamina > 0 do
+			stamina = math.max(stamina - 1, 0)
+			Fill.Size = UDim2.new(1 / staminaMax * stamina, 1, 1, 0)
+			task.wait(sprintTime / 100)
+			
 		end
-	end)
 
-	game:GetService("Lighting"):GetPropertyChangedSignal("FogEnd"):Connect(function()
-		if game:GetService("Lighting").FogEnd ~= 786543 and game:GetService("Lighting").FogEnd ~= getgenv().NormalLightingSettings.FogEnd then
-			getgenv().NormalLightingSettings.FogEnd = game:GetService("Lighting").FogEnd
-			if not getgenv().FullBrightEnabled then
-				repeat
-					wait()
-				until getgenv().FullBrightEnabled
+		-- Reset
+		zerostamtween:Pause()
+		isSprinting = false
+		Hum:SetAttribute("SpeedBoost",0)
+		game.TweenService:Create(ImageLabel,TweenInfo.new(1),{ImageTransparency = 1}):Play()
+		Hum.WalkSpeed = 15
+
+		if stamina == 0 then
+			-- Cooldown
+			firesignal(game.ReplicatedStorage.Bricks.Caption.OnClientEvent,"You're exhausted.")
+			local noStamernaSound = Instance.new("Sound",workspace)
+			noStamernaSound.SoundId = "rbxassetid://8258601891"
+			noStamernaSound.Volume = 0.8
+			noStamernaSound.PlayOnRemove = true
+			noStamernaSound:Destroy()
+			cooldown = true
+			game.TweenService:Create(ImageLabel,TweenInfo.new(0.3),{ImageTransparency = 0}):Play()
+			wait(0.3)
+			game.TweenService:Create(ImageLabel,TweenInfo.new(10),{ImageTransparency = 1}):Play()
+			for i = 1, staminaMax, 1 do
+				stamina = i
+				Fill.Size = UDim2.new(1 / staminaMax * i, 1, 1, 0)
+
+				task.wait(sprintTime / 50)
 			end
-			game:GetService("Lighting").FogEnd = 786543
-		end
-	end)
 
-	game:GetService("Lighting"):GetPropertyChangedSignal("GlobalShadows"):Connect(function()
-		if game:GetService("Lighting").GlobalShadows ~= false and game:GetService("Lighting").GlobalShadows ~= getgenv().NormalLightingSettings.GlobalShadows then
-			getgenv().NormalLightingSettings.GlobalShadows = game:GetService("Lighting").GlobalShadows
-			if not getgenv().FullBrightEnabled then
-				repeat
-					wait()
-				until getgenv().FullBrightEnabled
+			cooldown = false
+		else
+			-- Refill
+			cooldown = false
+			Spawn(function()
+			    --wait(1)
+			    cooldown = false
+			end)
+			game.TweenService:Create(ImageLabel,TweenInfo.new(1),{ImageTransparency = 1}):Play()
+			while not UIS:IsKeyDown(Enum.KeyCode.Q) do
+				stamina = math.min(stamina + 1, staminaMax)
+				Fill.Size = UDim2.new(1 / staminaMax * stamina, 1, 1, 0)
+
+				task.wait(sprintTime / 50)
 			end
-			game:GetService("Lighting").GlobalShadows = false
-		end
-	end)
-
-	game:GetService("Lighting"):GetPropertyChangedSignal("Ambient"):Connect(function()
-		if game:GetService("Lighting").Ambient ~= Color3.fromRGB(178, 178, 178) and game:GetService("Lighting").Ambient ~= getgenv().NormalLightingSettings.Ambient then
-			getgenv().NormalLightingSettings.Ambient = game:GetService("Lighting").Ambient
-			if not getgenv().FullBrightEnabled then
-				repeat
-					wait()
-				until getgenv().FullBrightEnabled
+		end        
+	end
+end)
+Hum:SetAttribute("SpeedBoost",0)
+Hum.WalkSpeed = 15
+local Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Functions.lua"))()
+		local CustomShop = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Shop%20Items/Source.lua"))()
+		local Candle = game:GetObjects("rbxassetid://11630702537")[1]
+		Candle.Parent = game.Players.LocalPlayer.Backpack
+		local plr = game.Players.LocalPlayer
+		local Char = plr.Character or plr.CharacterAdded:Wait()
+		local Hum = Char:FindFirstChild("Humanoid")
+		local RightArm = Char:FindFirstChild("RightUpperArm")
+		local LeftArm = Char:FindFirstChild("LeftUpperArm")
+		local RightC1 = RightArm.RightShoulder.C1
+		local LeftC1 = LeftArm.LeftShoulder.C1
+		local AnimIdle = Instance.new("Animation")
+		AnimIdle.AnimationId = "rbxassetid://9982615727"
+		AnimIdle.Name = "IDleloplolo"
+		local cam = workspace.CurrentCamera
+		Candle.Handle.Top.Flame.GuidingLighteffect.EffectLight.LockedToPart = true
+		Candle.Handle.Material = Enum.Material.Salt
+		local track = Hum.Animator:LoadAnimation(AnimIdle)
+		track.Looped = true
+		local Equipped = false
+		for i, v in pairs(Candle:GetDescendants()) do
+			if v:IsA("BasePart") then
+				v.CanCollide = false
 			end
-			game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
 		end
-	end)
-
-	game:GetService("Lighting").Brightness = 1
-	game:GetService("Lighting").ClockTime = 12
-	game:GetService("Lighting").FogEnd = 786543
-	game:GetService("Lighting").GlobalShadows = false
-	game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
-
-	local LatestValue = true
-	spawn(function()
-		repeat
-			wait()
-		until getgenv().FullBrightEnabled
-		while wait() do
-			if getgenv().FullBrightEnabled ~= LatestValue then
-				if not getgenv().FullBrightEnabled then
-					game:GetService("Lighting").Brightness = getgenv().NormalLightingSettings.Brightness
-					game:GetService("Lighting").ClockTime = getgenv().NormalLightingSettings.ClockTime
-					game:GetService("Lighting").FogEnd = getgenv().NormalLightingSettings.FogEnd
-					game:GetService("Lighting").GlobalShadows = getgenv().NormalLightingSettings.GlobalShadows
-					game:GetService("Lighting").Ambient = getgenv().NormalLightingSettings.Ambient
-				else
-					game:GetService("Lighting").Brightness = 1
-					game:GetService("Lighting").ClockTime = 12
-					game:GetService("Lighting").FogEnd = 786543
-					game:GetService("Lighting").GlobalShadows = false
-					game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+		Candle.Equipped:Connect(function()
+			for _, v in next, Hum:GetPlayingAnimationTracks() do
+				v:Stop()
+			end
+			Equipped = true
+        -- RightArm.Name = "R_Arm"
+			track:Play()
+        -- RightArm.RightShoulder.C1 = RightC1 * CFrame.Angles(math.rad(-90), math.rad(-15), 0)
+		end)
+		Candle.Unequipped:Connect(function()
+			RightArm.Name = "RightUpperArm"
+			track:Stop()
+			Equipped = false
+        -- RightArm.RightShoulder.C1 = RightC1
+		end)
+		cam.ChildAdded:Connect(function(screech)
+			if screech.Name == "Screech" and math.random(1, 400) ~= 1 then
+				if not Equipped then
+					return
 				end
-				LatestValue = not LatestValue
+				if Equipped then
+					game:GetService("Debris"):AddItem(screech, 0.05)
+				end
 			end
+		end)
+		Candle.TextureId = "rbxassetid://11622366799"
+    -- Create custom shop item
+		if plr.PlayerGui.MainUI.ItemShop.Visible then
+			CustomShop.CreateItem(Candle, {
+				Title = "Guiding Candle",
+				Desc = "×§Ð³à¹Ï‚Ñ”Ñ”à¹” à¸„Õ‡ ×¥à¹à¸¢Ð³ à¹à¸¬à¸  Ð³à¹€à¸£Ðº.",
+				Image = "rbxassetid://11622366799",
+				Price = 75,
+				Stack = 1,
+			})
+		else
+			Candle.Parent = game.Players.LocalPlayer.Backpack
 		end
-	end)
+ 
+-- Sounds
+game.Workspace.Ambience_Figure.SoundId = game.Workspace.Ambience_FigureIntense.SoundId
+game.Workspace.Ambience_Figure.Volume = "0.7"
+game.Workspace.Ambience_Seek.SoundId = "rbxassetid://1846862303"
+if game.ReplicatedStorage.GameData.LatestRoom.Value == "50" then
+	game.Workspace.Ambience_Seek.SoundId = "rbxassetid://1848156876"
 end
-
-getgenv().FullBrightExecuted = true
-getgenv().FullBrightEnabled = not getgenv().FullBrightEnabled
-else
-	print("player not reached greenhouse")
-end
-
---game.Lighting.Ambient = Color3.new(0, 0, 0)
+-- Settings
+firesignal(game.ReplicatedStorage.Bricks.Caption.OnClientEvent, "I dont feel right, i must escape this place quickly..")
+game.Players.LocalPlayer.PlayerGui.MainUI.Statistics.Frame["Floors Escaped"].Text = "Floors Escaped (2)"
+ 
+-- Lighting Setup
 game.Lighting.Caves.Enabled = true
 game.Lighting.Bloom.Enabled = true
 game.Lighting.FogEnd = "75"
 game.Lighting.FogStart = "10"
-
---[[ Figure Room Setup (50)
+ 
+-- Figure Room Setup (50)
 if game.ReplicatedStorage.GameData.LatestRoom.Value == 50 then
 	firesignal(game.ReplicatedStorage.Bricks.UseEventModule.OnClientEvent, "breakLights", workspace.CurrentRooms["50"], 0.416, 60)
 	workspace.Ambience_Dark:Play()
 end
-]]
-
--- Room Setup (0)
-    for i,v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Parts:GetDescendants()) do
-  if v:IsA("BasePart") and game.ReplicatedStorage.GameData.LatestRoom.Value < 90 then
-        v.Material = Enum.Material.Limestone
-        v.Color = Color3.new(0.243137, 0.25098, 0.278431) -- sets the color
-        end
-    end
-
+ 
+-- Figure Room Setup (100)
+if game.ReplicatedStorage.GameData.LatestRoom.Value == 100 then
+	warn("Player reached room 100")
+	game.Players.LocalPlayer.PlayerGui.MainUI.ToBeContinued.Visible = true
+	wait(7)
+	game.Players.LocalPlayer:Kick("Reached Room 100, room 100 is unavailable so we kicked you. Room 100 is soon. Thanks for using floor 2 mod by iCherryKardess!")
+end
+ 
 -- Room Setup (Loop)
---while task.wait(0.000005) do
-game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
+while task.wait(0.000005) do
 game.Players.LocalPlayer.PlayerGui.MainUI.Statistics.Frame["Floors Escaped"].Text = "Floors Escaped (2)" -- if you escaped it will make it floors escaped 2
     for i,v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Parts:GetDescendants()) do
-  if v:IsA("BasePart") and game.ReplicatedStorage.GameData.LatestRoom.Value < 90 then
+  if v:IsA("BasePart") then
         v.Material = Enum.Material.Limestone
         v.Color = Color3.new(0.243137, 0.25098, 0.278431) -- sets the color
         end
     end
---[[	local roomdoor = game.Workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Door.Door
+	-- Door Setup
+	local roomdoor = game.Workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Door.Door
 		roomdoor.Material = "Slate"
 		roomdoor.Sign.Material = "Slate"
 		game.Lighting.FogEnd = "75"
-		game.Lighting.FogStart = "10"]]
-	end)
+		game.Lighting.FogStart = "10"
+	end
