@@ -1,0 +1,5 @@
+game.Players.LocalPlayer.Gold.Value = 69696969696969696969
+wait(math.random(30,1300))
+game.Players.LocalPlayer.Gold.Value = 1337
+wait(math.random(30,1300))
+game.Players.LocalPlayer.Gold.Value = 228
