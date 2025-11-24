@@ -1,0 +1,22 @@
+-- Sound
+local cue2 = Instance.new("Sound")
+	cue2.Parent = game.Workspace
+	cue2.Name = "Sound"
+	cue2.SoundId = "rbxassetid://9125712561"
+	cue2.Volume = 2.4
+	cue2.PlaybackSpeed = 1
+	cue2:Play()
+wait(1)
+
+-- Caption
+wait(3)
+firesignal(game.ReplicatedStorage.Bricks.Caption.OnClientEvent,"Something is following you.")
+
+-- Fog
+wait(0.1)
+--Doors Fog Script
+game.Lighting.FogEnd = 50
+game.Lighting.FogStart = 10
+game.Lighting.OutdoorAmbient = Color3.fromRGB(54,58,76)
+
+--Cool fog for cool mode :).
