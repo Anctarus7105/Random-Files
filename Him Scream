@@ -10,7 +10,7 @@ wait(1)
 
 -- Caption
 wait(3)
-firesignal(game.ReplicatedStorage.Bricks.Caption.OnClientEvent,"Something is following you.")
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Something is following you.",true)
 
 -- Fog
 wait(0.1)
