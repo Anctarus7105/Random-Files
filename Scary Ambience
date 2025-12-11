@@ -1,15 +1,9 @@
---Cave ambience
-local sound = Instance.new("Sound")
-
-
-sound.SoundId = "rbxassetid://9113731836
-
-sound.Volume = 2.5
-
-sound.Looped = true
-
-sound:Play()
-
-sound.Parent = workspace
-
-
+local cue2 = Instance.new("Sound")
+	cue2.Parent = game.Workspace
+	cue2.Name = "Sound"
+	cue2.SoundId = "rbxassetid://9113731836"
+	cue2.Looped = true
+  cue2.Volume = 1.4
+	cue2.PlaybackSpeed = 1
+	cue2:Play()
+wait(1)
