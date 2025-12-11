@@ -1,0 +1,9 @@
+-- Fragmented Mode V6
+-- UNOFFICIAL!!!
+local args = {
+    [1] = "Fragmented Mode Executed Succesfully! Made by Anctarus#7105, eoyoustme and vct0721" .. --first text
+        " UNOFFICIAL Fragments", --second text
+    [2] = "Its UNOFFICIAL Version Of Frgamnted Mode "
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
