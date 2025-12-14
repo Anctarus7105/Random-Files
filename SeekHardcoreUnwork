@@ -1,0 +1,27 @@
+-- HardSeek
+local function findseek(seek)
+	if seek.Name == "SeekMoving" or seek.Name == "SeekMovingNewClone" then
+		task.wait(0.5)
+		local SeekRig = seek.SeekRig
+		local Figure = seek.Figure
+  	  SeekRig.Model = "rbxassetid://11664451634"
+		for i,v in pairs(SeekRig:GetDescendants()) do
+			if v:IsA("BasePart") then
+				v.Transparency = 1
+			end
+			if v.Name == "StringCheese" then
+				v:Destroy()
+			end
+		end
+		Figure.Transparency = 0
+		Figure.Attachment.ParticleEmitter.Enabled = true
+	else
+		return
+	end
+end
+for i, seek in pairs(workspace:GetChildren()) do
+	findseek(seek)
+end
+workspace.ChildAdded:Connect(function(seek)
+	findseek(seek)
+end)
