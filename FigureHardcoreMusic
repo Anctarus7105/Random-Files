@@ -1,0 +1,55 @@
+--[[
+
+MANY BUGGSSSSS!!!!!!!!!
+
+--]]
+
+local Unhinged = game.Workspace:WaitForChild("Unhinged")
+
+if Unhinged = then
+
+local Unhinged = game.Workspace:FindFirstChild("Unhinged")
+
+if Unhinged = then
+
+game.Workspace.Unhinged:Destroy()
+
+function GitAud(soundgit,filename)
+
+    SoundName=tostring(SoundName)
+
+    local url=soundgit
+
+    local FileName = filename
+
+    writefile(FileName..".mp3", game:HttpGet(url))
+
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+
+end
+
+function CustomGitSound(soundlink, vol, filename)
+
+    local sound = Instance.new("Sound")
+
+    sound.SoundId = GitAud(soundlink, filename)
+
+    sound.Parent = workspace
+
+    sound.Name = "deezerspawn"
+
+    sound.Volume = 10
+
+    sound.PlaybackSpeed = 1
+
+   sound:Play()
+
+end
+
+CustomGitSound("https://github.com/Anctarus7105/Custom-Sounds/raw/main/UnhingedRemastered.mp3", 1, "UnhingedRemastered")
+
+if game.ReplicatedStorage.GameData.LatestRoom.Value <= 51 then
+
+game.Workspace.UnhingedRemastered:Destroy() or game.Workspace.Unhinged:Destroy() or game.Workspace.unhingedremastered:Destroy() or game.Workspace.Unhingedremastered:Destroy() or game.Workspace.unhingedRemastered:Destroy()
+
+end
