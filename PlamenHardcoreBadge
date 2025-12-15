@@ -1,0 +1,10 @@
+---====== Load achievement giver ======---
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+---====== Display achievement ======---
+achievementGiver({
+    Title = "The Odds Are Against You",
+    Desc = "Hardcore Mode has been activated.",
+    Reason = "Good Luck fellow player, Anctarus#7105",
+    Image = "rbxassetid://0"
+})
