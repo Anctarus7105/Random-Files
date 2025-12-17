@@ -1,0 +1,7 @@
+local prefix = "[Door]: "
+local msg = "Linxy bro best dude"
+game.TextChatService.TextChannels.RBXGeneral:DisplaySystemMessage(`<font color='#ff0000'>{prefix..msg}</font>`)
+wait(5)
+local prefix = "[Door]: "
+local msg = "and Exploit"
+game.TextChatService.TextChannels.RBXGeneral:DisplaySystemMessage(`<font color='#ff0000'>{prefix..msg}</font>`)
