@@ -1,4 +1,4 @@
-if game.ReplicatedStorage.GameData.LatestRoom.Value <= 1 then
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
 
 ---====== Load achievement giver ======---
 local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
