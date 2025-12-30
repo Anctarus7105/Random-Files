@@ -19,7 +19,7 @@ function CustomGitSound(soundlink, vol, filename)
     Sound89:Play()
 end
 
-CustomGitSound("https://github.com/Anctarus7105/Custom-Sounds/raw/main/HardcoreGuidingLightEdit.mp3", 1, "HardcoreLight")
+CustomGitSound("https://github.com/Anctarus7105/Custom-Sounds/raw/main/HardcoreGuidingLight.mp3", 1, "HardcoreLight")
 
 -- Destroy Basic Guiding Light
 
