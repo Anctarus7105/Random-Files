@@ -1,4 +1,4 @@
-local prefix = "[Door]: "
+local prefix = " "
 local msg = "Linxy bro best dude"
 game.TextChatService.TextChannels.RBXGeneral:DisplaySystemMessage(`<font color='#ff0000'>{prefix..msg}</font>`)
 wait(5)
