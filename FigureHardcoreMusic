@@ -50,6 +50,6 @@ CustomGitSound("https://github.com/Anctarus7105/Custom-Sounds/raw/main/UnhingedR
 
 if game.ReplicatedStorage.GameData.LatestRoom.Value <= 51 then
 
-game.Workspace.UnhingedRemastered:Destroy() or game.Workspace.Unhinged:Destroy() or game.Workspace.unhingedremastered:Destroy() or game.Workspace.Unhingedremastered:Destroy() or game.Workspace.unhingedRemastered:Destroy()
+game.Workspace.UnhingedRemastered:Destroy() or game.Workspace.Unhinged:Destroy() or game.Workspace.unhingedremastered:Destroy() or game.Workspace.Unhingedremastered:Destroy() or game.Workspace.unhingedRemastered:Destroy() or game.Workspace.sound:Destroy()
 
 end
