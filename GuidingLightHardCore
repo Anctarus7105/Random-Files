@@ -1,0 +1,69 @@
+local Players = game:GetService("Players")
+local Camera = workspace.CurrentCamera
+local TweenService = game:GetService("TweenService")
+
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+local DeathName = "DeathBackgroundBlue"
+local Music = PlayerGui:WaitForChild("MainUI"):WaitForChild("Initiator"):WaitForChild("Main_Game"):WaitForChild("Health"):WaitForChild("Music")
+
+_G.DO_RED_GUY = true
+
+-- Tải nhạc từ link
+local function GitAud(url, filename)
+    writefile(filename..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(filename..".mp3")
+end
+
+-- Phát nhạc và tự destroy khi kết thúc
+local function PlayCustomSound(url, vol, filename)
+    local sound = Instance.new("Sound", Music)
+    sound.SoundId = GitAud(url, filename)
+    sound.Volume = vol or 1
+    sound:Play()
+    sound.Ended:Connect(function()
+        sound:Destroy()
+    end)
+end
+
+-- Hiển thị ImageLabel flicker + fade-in
+local function ShowFlickerImage()
+    wait(1)
+    local img = Instance.new("ImageLabel")
+    img.Size = UDim2.new(1,0,1,0)
+    img.Position = UDim2.new(0,0,0,0)
+    img.BackgroundTransparency = 1
+    img.ImageTransparency = 1
+    img.ZIndex = 10
+    img.Parent = PlayerGui
+
+    local ids = {"rbxassetid://94547864377343","rbxassetid://236542974"}
+    local running = true
+
+    spawn(function()
+        local i = 1
+        while running do
+            img.Image = ids[i]
+            i = i % #ids + 1
+            wait(0.001)
+        end
+    end)
+
+    TweenService:Create(img, TweenInfo.new(1), {ImageTransparency = 0}):Play()
+    wait(1)
+    running = false
+    img:Destroy()
+end
+
+-- Khi DeathBackgroundBlue xuất hiện
+Camera.ChildAdded:Connect(function(c)
+    if c.Name ~= DeathName or not _G.DO_RED_GUY then return end
+
+    for _, v in pairs(Music:GetChildren()) do if v:IsA("Sound") then v:Destroy() end end
+
+    -- Phát nhạc Guiding Light
+    PlayCustomSound("https://github.com/Anctarus7105/Custom-Sounds/raw/main/HardcoreGuidingLight.mp3?raw=true", 1, "Music")
+
+    -- Hiển thị ImageLabel flicker + fade-in
+    ShowFlickerImage()
+end)
