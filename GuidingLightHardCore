@@ -62,7 +62,7 @@ Camera.ChildAdded:Connect(function(c)
     for _, v in pairs(Music:GetChildren()) do if v:IsA("Sound") then v:Destroy() end end
 
     -- Phát nhạc Guiding Light
-    PlayCustomSound("https://github.com/Anctarus7105/Custom-Sounds/raw/main/HardcoreGuidingLight.mp3?raw=true", 1, "Music")
+    PlayCustomSound("https://github.com/Anctarus7105/Custom-Sounds/raw/main/HardcoreGuidingLightEdit.mp3?raw=true", 1, "Music")
 
     -- Hiển thị ImageLabel flicker + fade-in
     ShowFlickerImage()
